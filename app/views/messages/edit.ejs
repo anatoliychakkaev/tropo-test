@@ -1,0 +1,9 @@
+<div class="page-header"><h1>Edit message</h1></div>
+
+<% form_for(message, {action: path_to.message(message), method: 'PUT', id: "message_form", class: 'form-horizontal'}, function (form) { %>
+    <%- partial('messages/form.ejs', {locals: {form: form, message: message}}) %>
+    <div class="form-actions">
+        <%- form.submit('<i class="icon-ok icon-white"></i> Update message', {class: 'btn btn-primary'}) %> or
+        <%- link_to('Cancel', path_to.message(message), {class: 'btn'}) %>
+    </div>
+<% });%>
