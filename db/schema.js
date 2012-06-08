@@ -26,4 +26,7 @@ var Message = describe('Message', function () {
     property('lastname', String);
     property('phone', String);
     property('message', String);
+    property('type', String, {default: 'voice'}); // sms, voice
+    property('status');
 });
+

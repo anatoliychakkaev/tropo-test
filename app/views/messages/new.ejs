@@ -2,10 +2,29 @@
     <h1>New message</h1>
 </div>
 
-<% form_for(message, {action: path_to.messages(), method: 'POST', id: "message_form", class: 'form-horizontal'}, function (form) { %>
+<% form_for(message, {action: path_to.messages(), 'data-jsonp': 'handleResult', 'data-remote': true, method: 'POST', id: "message_form", class: 'form-horizontal'}, function (form) { %>
     <%- partial('messages/form.ejs', {locals: {form: form, message: message}}) %>
+    <div class="result" style="font-size: 30px;">
+    </div>
     <div class="form-actions">
         <%- form.submit('<i class="icon-ok icon-white"></i> Create message', {class: 'btn btn-primary'}) %> or
         <%- link_to('Cancel', path_to.messages(), {class: 'btn'}) %>
     </div>
 <% });%>
+
+<script>
+  $(function () {
+    $('.form-actions button').click(function () {
+      var $btn = $(this);
+      setTimeout(function () {
+        $btn.attr('disabled', true).addClass('disabled');
+      }, 100);
+    });
+  });
+  function handleResult(res) {
+    $('.form-actions button').attr('disabled', false).removeClass('disabled');
+    $('.result').html('STATE: ' + res.state);
+    // console.log(res);
+  }
+</script>
+

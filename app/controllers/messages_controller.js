@@ -4,7 +4,7 @@ before(loadMessage, {only: ['show', 'edit', 'update', 'destroy']});
 
 action('new', function () {
     this.title = 'New message';
-    this.message = new Message;
+    this.message = new Message({'status': 'NEW'});
     render();
 });
 
@@ -19,6 +19,7 @@ action(function create() {
         } else {
             message.send(function (status) {
                 send(status);
+                message.updateAttribute('status', status.state, console.log);
             });
         }
     });

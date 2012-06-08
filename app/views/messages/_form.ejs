@@ -23,3 +23,17 @@
        <%- form.input("message") %>
    </div>
 </div>
+
+<div class="control-group">
+  <%- form.label("type", 'Message type', {class: "control-label"}) %>
+   <div class="controls">
+     <label class="radio">
+       <input type="radio" name="Message[type]" value="voice" <%= message.type === 'voice' ? ' checked': '' %> />
+       voice
+     </label>
+     <label class="radio">
+       <input type="radio" name="Message[type]" value="sms" <%= message.type === 'sms' ? ' checked': '' %> />
+       SMS
+     </label>
+   </div>
+</div>
