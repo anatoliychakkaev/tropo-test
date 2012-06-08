@@ -12,6 +12,11 @@ app.configure(function(){
     app.use(express.cookieParser('secret'));
     app.use(express.session({secret: 'secret'}));
     app.use(express.methodOverride());
+    app.use(function (req, res, next) {
+        console.log(req.url);
+        console.log(req.body);
+        next();
+    });
     app.use(app.router);
 });
 
