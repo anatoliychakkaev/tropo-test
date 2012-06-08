@@ -17,8 +17,9 @@ action(function create() {
                 title: 'New message'
             });
         } else {
-            flash('info', 'Message created');
-            redirect(path_to.messages());
+            message.send(function (status) {
+                send(status);
+            });
         }
     });
 });
